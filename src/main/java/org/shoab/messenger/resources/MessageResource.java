@@ -67,12 +67,36 @@ public class MessageResource {
 	public Message getMessage(@PathParam("id")long id, @Context UriInfo uriInfo) {
 		Message message = messageService.getMessage(id);
 		message.addLink(getUriForSelf(uriInfo, message), "self");
+		message.addLink(getUriForProfile(uriInfo, message), "profile");
+		message.addLink(getUriForComments(uriInfo, message), "comments");
 		return message;
 	}
 	
+	
+
 	@Path("/{messageId}/comments")
 	public CommentResource getCommentResource() {
 		return new CommentResource();
+	}
+	
+	private String getUriForComments(UriInfo uriInfo, Message message) {
+		String uri = uriInfo.getBaseUriBuilder()
+				.path(MessageResource.class)
+				.path(MessageResource.class, "getCommentResource")
+				.path(CommentResource.class)
+				.resolveTemplate("messageId", message.getId())
+				.build()
+				.toString();
+return uri;
+	}
+	
+	private String getUriForProfile(UriInfo uriInfo, Message message) {
+		String uri = uriInfo.getBaseUriBuilder()
+							.path(ProfileResource.class)
+							.path(message.getAuthor())
+							.build()
+							.toString();
+		return uri;
 	}
 	
 	private String getUriForSelf(UriInfo uriInfo, Message message) {
