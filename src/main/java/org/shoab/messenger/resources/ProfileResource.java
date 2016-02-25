@@ -33,7 +33,7 @@ public class ProfileResource {
 	}
 	
 	@GET
-	@Path("/{profileName")
+	@Path("/{profileName}")
 	public Profile getProfile(@PathParam("profileName") String profileName) {
 		return profileService.getProfile(profileName);
 	}

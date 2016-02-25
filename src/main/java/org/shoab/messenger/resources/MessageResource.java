@@ -15,7 +15,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.core.UriInfo;
 
 import org.shoab.messenger.model.Message;
@@ -65,12 +64,23 @@ public class MessageResource {
 	
 	@GET
 	@Path("/{id}")
-	public Message getMessage(@PathParam("id")long id) {
-		return messageService.getMessage(id);
+	public Message getMessage(@PathParam("id")long id, @Context UriInfo uriInfo) {
+		Message message = messageService.getMessage(id);
+		message.addLink(getUriForSelf(uriInfo, message), "self");
+		return message;
 	}
 	
 	@Path("/{messageId}/comments")
 	public CommentResource getCommentResource() {
 		return new CommentResource();
+	}
+	
+	private String getUriForSelf(UriInfo uriInfo, Message message) {
+		String uri = uriInfo.getBaseUriBuilder()
+							.path(MessageResource.class)
+							.path(Long.toString(message.getId()))
+							.build()
+							.toString();
+		return uri;
 	}
 }

@@ -37,6 +37,7 @@ public class MessageService {
 	public List<Message> getAllMessagesPaginated(int start, int size) {
 		ArrayList<Message> list = new ArrayList<>(messages.values());
 		if (start + size > list.size()) return new ArrayList<Message>();
+		if (start == 0 && size == 0) return list;
 		return list.subList(start, start + size);
 	}
 	
