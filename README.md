@@ -24,4 +24,4 @@ Instructions for creating new Maven JAX-RS project:
 - Set JAVA_HOME environment variable (if Windows)
 - Add server in Eclipse EE Apache Tomcat 8
 - Start server
-- Right click on project and Run as -> On server
+- Right click on project and Run as > On server
