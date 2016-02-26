@@ -1,10 +1,12 @@
 # Messenger-REST-api
-This is a Java RESTful API for a social media application using JAX-RS (Jersey) and Maven for dependenccy management. The api has several basic create, read, update, delete (CRUD) functionalities. Various excpetion handling and HATEOAS concepts are implemeted.
+This is a Java RESTful API for a social media application using JAX-RS (Jersey) and Maven for dependenccy management. The api has several basic create, read, update, delete (CRUD) functionalities. Various exception handling and HATEOAS concepts also implemeted.
 
-# TODO
+TODO:
+
 Yet to implement front-end web application. Node, AngularJs etc
 
-#Issues
+Issues:
+
 Please report suggestions and feeback. Thanks !!!
 
 Server:
